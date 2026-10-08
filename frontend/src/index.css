@@ -1,0 +1,819 @@
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --bg-primary: #F8FAFC;
+    --text-primary: #0F172A;
+    --text-secondary: #1E293B;
+    --glass-bg: rgba(255, 255, 255, 0.9);
+    --glass-border: rgba(15, 23, 42, 0.2);
+    --glass-shadow: rgba(0, 0, 0, 0.1);
+    --glass-bg-simple: rgba(255, 255, 255, 0.7);
+    --glass-border-simple: rgba(15, 23, 42, 0.12);
+  }
+
+  .dark {
+    --bg-primary: #020617;
+    --text-primary: #F1F5F9;
+    --text-secondary: #94A3B8;
+    --glass-bg: rgba(15, 23, 42, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.4);
+    --glass-bg-simple: rgba(15, 23, 42, 0.6);
+    --glass-border-simple: rgba(255, 255, 255, 0.08);
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Prevent transitions during theme switching to avoid lag */
+  .theme-switching,
+  .theme-switching * {
+    transition: none !important;
+  }
+
+  /* Lenis smooth scrolling */
+  html.lenis {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
+  /* Custom animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes pulse {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes bellRing {
+
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+
+    10%,
+    30% {
+      transform: rotate(-10deg);
+    }
+
+    20%,
+    40% {
+      transform: rotate(10deg);
+    }
+
+    50% {
+      transform: rotate(0deg);
+    }
+  }
+
+  /* Professional Icon Animations */
+  @keyframes iconFloat {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes iconBounce {
+
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+
+    50% {
+      transform: translateY(-10px) scale(1.05);
+    }
+  }
+
+  @keyframes iconPulseGlow {
+
+    0%,
+    100% {
+      opacity: 1;
+      filter: drop-shadow(0 0 2px currentColor);
+    }
+
+    50% {
+      opacity: 0.8;
+      filter: drop-shadow(0 0 8px currentColor);
+    }
+  }
+
+  @keyframes iconSpin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes iconShake {
+
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+
+    25% {
+      transform: translateX(-5px) rotate(-5deg);
+    }
+
+    75% {
+      transform: translateX(5px) rotate(5deg);
+    }
+  }
+
+  @keyframes iconZoomIn {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes iconWave {
+
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+
+    25% {
+      transform: rotate(15deg);
+    }
+
+    75% {
+      transform: rotate(-15deg);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  .animate-slideIn {
+    animation: slideIn 0.3s ease-out forwards;
+  }
+
+  .animate-bell-ring {
+    animation: bellRing 1s ease-in-out infinite;
+    transform-origin: top center;
+  }
+
+  /* Icon Animation Classes */
+  .icon-float {
+    animation: iconFloat 2s ease-in-out infinite;
+  }
+
+  .icon-bounce {
+    animation: iconBounce 1.5s ease-in-out infinite;
+  }
+
+  .icon-pulse-glow {
+    animation: iconPulseGlow 2s ease-in-out 3;
+  }
+
+  .icon-spin {
+    animation: iconSpin 1s linear infinite;
+  }
+
+  .icon-zoom-in {
+    animation: iconZoomIn 0.5s ease-out;
+  }
+
+  /* Hover-triggered animations */
+  .icon-hover-float:hover {
+    animation: iconFloat 0.6s ease-in-out;
+  }
+
+  .icon-hover-bounce:hover {
+    animation: iconBounce 0.5s ease-in-out;
+  }
+
+  .icon-hover-shake:hover {
+    animation: iconShake 0.5s ease-in-out;
+  }
+
+  .icon-hover-spin:hover {
+    animation: iconSpin 0.6s ease-in-out;
+  }
+
+  .icon-hover-wave:hover {
+    animation: iconWave 0.5s ease-in-out;
+    transform-origin: bottom center;
+  }
+
+  /* Smooth icon transitions - Optimized */
+  .icon-transition {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, color 0.3s ease;
+  }
+
+  .icon-hover-scale:hover {
+    transform: scale(1.15);
+  }
+
+  .icon-hover-rotate:hover {
+    transform: rotate(12deg) scale(1.1);
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 0.3s ease-out forwards;
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transform: translateZ(0);
+    will-change: transform, box-shadow;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #6366f1 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
+    width: fit-content;
+  }
+
+  .gradient-text-hero {
+    background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+  }
+
+  /* Gradient background */
+  .gradient-bg {
+    background: linear-gradient(135deg, #2563eb 0%, #0f172a 100%);
+  }
+
+  /* Glass effect - Optimized */
+  .glass-panel {
+    background: var(--glass-bg-simple);
+    border: 1px solid var(--glass-border-simple);
+    border-radius: 16px;
+    transform: translateZ(0);
+  }
+
+  /* Premium Glassmorphism Class - Theme Aware */
+  .glass-panel-premium {
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 24px 0 var(--glass-shadow);
+    transform: translateZ(0);
+    will-change: transform, box-shadow;
+  }
+
+  .glass-panel-premium:hover {
+    border: 1px solid color-mix(in srgb, var(--glass-border), white 20%);
+    transform: translateY(-4px) translateZ(0);
+    box-shadow: 0 10px 30px 0 var(--glass-shadow);
+  }
+
+  /* Dedicated Navbar Style - Fixed without hover transforms */
+  .glass-navbar {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 2px 15px 0 var(--glass-shadow);
+    z-index: 1100 !important;
+    transform: translateZ(0);
+    will-change: transform;
+    transition: background-color 0.3s ease;
+  }
+
+  .mobile-navbar-opaque {
+    background-color: var(--bg-primary) !important;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-navbar-glass {
+      background: var(--glass-bg) !important;
+    }
+  }
+
+  /* Premium Button with glass effect - Dark version for Light cards */
+  .glass-button-primary {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    padding: 11px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-button-primary:hover {
+    background: #1e293b;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+  }
+
+  /* Featured Badge - Colorful for light mode */
+  .featured-pill {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    color: white;
+    padding: 3px 12px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+  }
+
+  /* Loading skeleton */
+  .skeleton {
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 200% 0;
+    }
+
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply bg-primary-100 text-primary-800;
+  }
+
+  .badge-secondary {
+    @apply bg-secondary-100 text-secondary-800;
+  }
+
+  .badge-success {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .badge-warning {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+
+  .badge-error {
+    @apply bg-red-100 text-red-800;
+  }
+
+  /* Sidebar styles */
+  .sidebar-transition {
+    transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0);
+    will-change: width;
+  }
+
+  .sidebar-item-hover {
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+
+  .sidebar-item-hover:hover {
+    transform: translateX(2px);
+  }
+
+  /* Smooth transitions - Optimized */
+  .transition-smooth {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Custom Search Styles */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  #filter-icon {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    height: 32px;
+    width: 32px;
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: 10px;
+    background: var(--bg-primary);
+    border: 1px solid var(--glass-border-simple);
+    cursor: pointer;
+  }
+
+  .filterBorder {
+    height: 34px;
+    width: 34px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%);
+    border-radius: 10px;
+  }
+
+  .filterBorder::before {
+    content: "";
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    filter: brightness(1.35);
+    background-image: conic-gradient(rgba(0, 0, 0, 0),
+        var(--text-secondary),
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0) 50%,
+        var(--text-secondary),
+        rgba(0, 0, 0, 0) 100%);
+    animation: rotate 4s linear infinite;
+    animation-play-state: paused;
+  }
+
+
+  @keyframes rotate {
+    100% {
+      transform: translate(-50%, -50%) rotate(450deg);
+    }
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* ==========================================================
+    MOBILE UI OPTIMIZATION (Unstop Style)
+    ========================================================== */
+  @media (max-width: 768px) {
+
+    /* Layout Spacing */
+    section {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+      margin-bottom: 24px !important;
+    }
+
+    /* Section Titles */
+    section h2.text-3xl,
+    section h2.text-4xl {
+      font-size: 18px !important;
+      font-weight: 700 !important;
+      margin-bottom: 12px !important;
+      text-align: left !important;
+    }
+
+    /* Padding Top for Fixed Navbar */
+    .min-h-screen.flex-col.pt-16 {
+      padding-top: 80px !important;
+    }
+
+    /* Hide Sidebar on Mobile */
+    aside,
+    .hidden.md\:block {
+      display: none !important;
+    }
+
+    /* 2-Column Grid for Events on Mobile */
+    .grid-cols-1,
+    .md\:grid-cols-2,
+    .lg\:grid-cols-3 {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 12px !important;
+    }
+
+    /* Event Card Mobile Styles */
+    .glass-panel-premium.rounded-2xl {
+      border-radius: 14px !important;
+      width: 100% !important;
+      height: 100% !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    .glass-panel-premium .relative.h-56 {
+      height: 110px !important;
+      width: 100% !important;
+      flex-shrink: 0 !important;
+    }
+
+    .glass-panel-premium img {
+      border-radius: 14px 14px 0 0 !important;
+      object-fit: cover !important;
+    }
+
+    .glass-panel-premium .p-5 {
+      padding: 10px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      flex-grow: 1 !important;
+    }
+
+    /* Card Title Font Size */
+    .glass-panel-premium h3 {
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      line-height: 1.2 !important;
+      margin-bottom: 4px !important;
+    }
+
+    /* Card Subtext / Description Fix - Hidden on Mobile */
+    .glass-panel-premium p.text-sm {
+      display: none !important;
+    }
+
+    /* Action Buttons inside cards */
+    .glass-button-primary {
+      width: 100% !important;
+      height: 38px !important;
+      min-height: 38px !important;
+      font-size: 13px !important;
+      border-radius: 10px !important;
+      padding: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    /* Hide Scrollbars */
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Specific adjustment for Hero on mobile */
+    section.bg-gradient-to-br {
+      padding-top: 40px !important;
+      padding-bottom: 40px !important;
+      margin-top: -16px !important;
+    }
+
+    h1.text-4xl {
+      font-size: 22px !important;
+      line-height: 1.2 !important;
+    }
+  }
+
+
+
+  /* Hide scrollbar utility for smooth horizontal scrolling */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    transform: translateZ(0);
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ── Accessible sidebar tooltip ───────────────────────────────────────
+     Shows on hover AND :focus-visible so keyboard users see the label.
+     Uses [data-tooltip] attribute on the trigger element.
+  ──────────────────────────────────────────────────────────────────── */
+  [data-tooltip] {
+    position: relative;
+  }
+
+  [data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%) scale(0.92);
+    white-space: nowrap;
+    background: rgba(15, 23, 42, 0.92);
+    color: #f1f5f9;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 6px 10px;
+    border-radius: 7px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 140ms ease, transform 140ms ease;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+
+  [data-tooltip]:hover::after,
+  [data-tooltip]:focus-visible::after {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-tooltip]::after {
+      transition: none;
+    }
+  }
+
+  /* ── Section-edge fade utility ─────────────────────────────────────────
+     Add the element below as the LAST child of any section that hard-cuts
+     into the next section. It fades the current section's background into
+     transparent over 64px, letting the next section's bg show through.
+     Use one of:
+       .section-fade-to-white   → fades current section to white (light mode)
+       .section-fade-to-slate50 → fades current section to #f8fafc (light slate)
+       .section-fade-to-dark    → fades current section to dark (#020617)
+     All are pointer-events-none and positioned absolute/bottom-0.
+  ──────────────────────────────────────────────────────────────────── */
+  .section-fade-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .section-fade-to-white {
+    background: linear-gradient(to bottom, transparent, #ffffff);
+  }
+
+  .dark .section-fade-to-white {
+    background: linear-gradient(to bottom, transparent, #020617);
+  }
+
+  .section-fade-to-slate {
+    background: linear-gradient(to bottom, transparent, #f8fafc);
+  }
+
+  .dark .section-fade-to-slate {
+    background: linear-gradient(to bottom, transparent, #020617);
+  }
+
+  .section-fade-to-dark {
+    background: linear-gradient(to bottom, transparent, #0b1629);
+  }
+
+  /* Top fade — used on footer top edge */
+  .section-fade-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .section-fade-top.section-fade-to-dark {
+    background: linear-gradient(to top, transparent, #0b1629);
+  }
