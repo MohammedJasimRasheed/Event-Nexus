@@ -111,12 +111,6 @@ This project is designed to work seamlessly on both **Linux** and **Windows**. T
     npm run install-all
     ```
 
-## 📩 Contact
-For queries or collaboration, reach out via:
-- <img src="https://skillicons.dev/icons?i=gmail" width="20" valign="middle" /> Email: [kaushi00007@gmail.com](mailto:kaushi00007@gmail.com)
-- <img src="https://skillicons.dev/icons?i=linkedin" width="20" valign="middle" /> LinkedIn: [Kaushik K](https://www.linkedin.com/in/kaushik-k-dev)
-- <img src="https://skillicons.dev/icons?i=github" width="20" valign="middle" /> GitHub: [Kaushik00007](https://github.com/Kaushik00007)
-
 ---
 
 <p align="center">
